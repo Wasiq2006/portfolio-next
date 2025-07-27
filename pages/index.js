@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import MatrixBackground from '../components/MatrixBackground';
@@ -50,62 +49,16 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl font-bold text-green-400">Welcome</h1>
-              <p>This is my personal portfolio built with Termux, GitHub, and Vercel.</p>
-
-              <ol className="font-mono list-inside list-decimal text-sm text-gray-300">
-                <li>
-                  Get started by editing{" "}
-                  <code className="bg-gray-800 px-2 py-1 rounded">pages/index.js</code>
-                </li>
-                <li>Save and see your changes instantly.</li>
-              </ol>
-
-              <div className="flex gap-4 items-center flex-col sm:flex-row">
-                <a
-                  href="https://vercel.com/new"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded bg-white text-black hover:bg-gray-200 transition"
-                >
-                  Deploy Now
-                </a>
-                <a
-                  href="https://nextjs.org/docs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded border border-white hover:bg-white hover:text-black transition"
-                >
-                  Read Docs
-                </a>
-              </div>
+              <h1 className="text-4xl font-bold text-green-400">
+                Welcome to Wasiq's Portfolio
+              </h1>
+              <p className="text-gray-300 text-sm max-w-xl">
+                Built entirely using Termux + GitHub + Vercel —
+              </p>
             </motion.main>
 
-            <footer className="row-start-3 flex gap-6 flex-wrap justify-center text-sm text-gray-400">
-              <a
-                href="https://nextjs.org/learn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Learn
-              </a>
-              <a
-                href="https://vercel.com/templates?framework=next.js"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Examples
-              </a>
-              <a
-                href="https://nextjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                Go to nextjs.org →
-              </a>
+            <footer className="row-start-3 flex gap-6 flex-wrap justify-center text-sm text-gray-500">
+              <p>© {new Date().getFullYear()} Wasiq Mansoor</p>
             </footer>
           </div>
         </>
