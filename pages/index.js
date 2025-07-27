@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import MatrixBackground from "../components/Canvas/MatrixBackground";
 import { Geist, Geist_Mono } from "next/font/google";
-import { motion } from "framer-motion"; // ← Added this
+import { motion } from "framer-motion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +17,13 @@ const geistMono = Geist_Mono({
 export default function Home() {
   return (
     <>
+      {/* Animated background */}
+      <MatrixBackground />
+
+      {/* Navbar and main content */}
       <Navbar />
       <div
-        className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-black text-white`}
+        className={`${geistSans.className} ${geistMono.className} relative z-10 font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-black text-white`}
       >
         <motion.main
           className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-center sm:text-left"
