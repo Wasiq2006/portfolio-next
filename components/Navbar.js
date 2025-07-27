@@ -1,6 +1,13 @@
+'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import localFont from 'next/font/local';
+
+const pixelFont = localFont({
+  src: '../fonts/PressStart2P-Regular.ttf',
+  variable: '--font-pixel',
+});
 
 export default function Navbar() {
   const router = useRouter();
@@ -14,14 +21,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-black text-white font-mono px-6 py-4 shadow-md sticky top-0 z-50">
+    <nav className={`${pixelFont.className} bg-black text-white px-6 py-4 shadow-md sticky top-0 z-50`}>
       <div className="max-w-5xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-cyan-400 text-xl font-bold hover:text-cyan-300 transition">
+        <Link href="/" className="text-cyan-400 text-base sm:text-xl font-bold hover:text-cyan-300 transition">
           Wasiq.dev
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex space-x-6 text-sm sm:text-base">
+        <div className="hidden md:flex space-x-6 text-xs sm:text-sm">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -55,7 +62,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden mt-4 space-y-3 text-center">
+        <div className="md:hidden mt-4 space-y-3 text-center text-sm">
           {navItems.map((item) => (
             <Link
               key={item.name}
