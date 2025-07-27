@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import localFont from 'next/font/local';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const pixelFont = localFont({
   src: '../fonts/PressStart2P-Regular.ttf',
@@ -60,23 +61,31 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden mt-4 space-y-3 text-center text-sm">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.path}
-              className={`block py-2 hover:text-pink-400 ${
-                router.pathname === item.path ? 'text-green-400 underline' : ''
-              }`}
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      )}
+      {/* Mobile Menu with Animation */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="md:hidden mt-4 space-y-3 text-center text-sm"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.path}
+                className={`block py-2 hover:text-pink-400 ${
+                  router.pathname === item.path ? 'text-green-400 underline' : ''
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
