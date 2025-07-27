@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -19,7 +19,19 @@ const pixelFont = localFont({
 });
 
 export default function Home() {
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
+  const [checkedVisit, setCheckedVisit] = useState(false);
+
+  useEffect(() => {
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    if (!hasVisited) {
+      setShowIntro(true);
+      sessionStorage.setItem('hasVisited', 'true');
+    }
+    setCheckedVisit(true);
+  }, []);
+
+  if (!checkedVisit) return null;
 
   return (
     <>
