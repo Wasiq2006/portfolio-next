@@ -1,6 +1,17 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-
+import Navbar from '../components/Navbar';
+export default function Home() {
+  return (
+    <>
+      <Navbar />
+      <div className="bg-black text-white min-h-screen p-10 text-center">
+        <h1 className="text-4xl font-bold text-green-400">Welcome</h1>
+        <p className="mt-4">This is my personal portfolio built with Termux, GitHub, and Vercel.</p>
+      </div>
+    </>
+  );
+}
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
