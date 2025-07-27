@@ -1,7 +1,10 @@
+import Image from 'next/image';
 import Navbar from '../../components/Navbar';
-import MatrixBackground from '../../components/Canvas/MatrixBackground';
-import { motion } from 'framer-motion';
+import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
+
+const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
 const pixelFont = localFont({
   src: '../../fonts/PressStart2P-Regular.ttf',
@@ -11,28 +14,32 @@ const pixelFont = localFont({
 export default function Contact() {
   return (
     <>
-      <MatrixBackground />
       <Navbar />
-      <motion.div
-        className={`${pixelFont.className} relative z-10 p-10 min-h-screen bg-black text-white text-center`}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      <div
+        className={`${geistSans.className} ${geistMono.className} ${pixelFont.className} bg-black text-white min-h-screen p-10 text-center`}
       >
-        <h1 className="text-4xl font-bold text-pink-400">Contact Me</h1>
-        <p className="mt-4">
-          Reach me via{" "}
-          <a
-            href="https://github.com/Wasiq2006"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline text-blue-300 hover:text-white"
-          >
-            GitHub
-          </a>{" "}
-          — my DMs are always open for collabs or questions!
-        </p>
-      </motion.div>
+        <h1 className="text-3xl font-bold text-pink-400 mb-6">Contact Me</h1>
+
+        <div className="flex flex-col items-center gap-6 text-sm">
+          {/* GitHub */}
+          <a href="https://github.com/Wasiq2006" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:scale-105 transition-transform">
+            <Image src="/icons/github.png" width={32} height={32} alt="GitHub" />
+            <span>github.com/Wasiq2006</span>
+          </a>
+
+          {/* Email */}
+          <div className="flex items-center gap-3">
+            <Image src="/icons/email.png" width={32} height={32} alt="Email" />
+            <span>wasiqmansoor69@gmail.com</span>
+          </div>
+
+          {/* LinkedIn */}
+          <a href="https://www.linkedin.com/in/wasiq-mansoor-35332927a?trk=contact-info" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:scale-105 transition-transform">
+            <Image src="/icons/linkedin.png" width={32} height={32} alt="LinkedIn" />
+            <span>linkedin.com/in/wasiq-mansoor</span>
+          </a>
+        </div>
+      </div>
     </>
   );
 }
