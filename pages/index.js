@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import { Geist, Geist_Mono } from "next/font/google";
+import { motion } from "framer-motion"; // ← Added this
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,7 +20,12 @@ export default function Home() {
       <div
         className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-black text-white`}
       >
-        <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-center sm:text-left">
+        <motion.main
+          className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-center sm:text-left"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <h1 className="text-4xl font-bold text-green-400">Welcome</h1>
           <p>This is my personal portfolio built with Termux, GitHub, and Vercel.</p>
 
@@ -49,7 +55,7 @@ export default function Home() {
               Read Docs
             </a>
           </div>
-        </main>
+        </motion.main>
 
         <footer className="row-start-3 flex gap-6 flex-wrap justify-center text-sm text-gray-400">
           <a
