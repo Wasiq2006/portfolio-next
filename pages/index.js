@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
-import MatrixBackground from '../components/MatrixBackground';
 import Navbar from '../components/Navbar';
 import TerminalIntro from '../components/Terminal/TerminalIntro';
 import { motion } from 'framer-motion';
@@ -23,10 +22,12 @@ export default function Home() {
   const [checkedVisit, setCheckedVisit] = useState(false);
 
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem('hasVisited');
-    if (!hasVisited) {
+    const lastVisit = localStorage.getItem('lastVisit');
+    const now = Date.now();
+
+    if (!lastVisit || now - parseInt(lastVisit) > 4 * 60 * 60 * 1000) {
       setShowIntro(true);
-      sessionStorage.setItem('hasVisited', 'true');
+      localStorage.setItem('lastVisit', now.toString());
     }
     setCheckedVisit(true);
   }, []);
@@ -39,10 +40,10 @@ export default function Home() {
         <TerminalIntro onComplete={() => setShowIntro(false)} />
       ) : (
         <>
-          <MatrixBackground />
+          {/* MatrixBackground is now in _app.js (global) */}
           <Navbar />
           <div
-            className={`${geistSans.className} ${geistMono.className} ${pixelFont.className} relative z-10 min-h-screen flex flex-col justify-center items-center text-center`}
+            className={`${geistSans.className} ${geistMono.className} ${pixelFont.className} relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4`}
           >
             <motion.main
               initial={{ opacity: 0, y: 40 }}
@@ -56,8 +57,8 @@ export default function Home() {
                 Cybersecurity Enthusiast & Ethical Hacker in Training
               </p>
 
-              <div className="flex gap-6 justify-center">
-                <Link href="/projects">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/projects" passHref>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     className="px-6 py-3 rounded-lg bg-green-500 text-black font-bold shadow-lg hover:bg-green-400 transition"
@@ -65,7 +66,7 @@ export default function Home() {
                     View Projects
                   </motion.a>
                 </Link>
-                <Link href="/contact">
+                <Link href="/contact" passHref>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     className="px-6 py-3 rounded-lg border border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition"
