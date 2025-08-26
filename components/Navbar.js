@@ -1,34 +1,35 @@
 'use client';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link } from 'react-scroll';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import localFont from 'next/font/local';
 
-// Load pixel font
+// Pixel Font
 const pixelFont = localFont({
   src: '../fonts/PressStart2P-Regular.ttf',
   variable: '--font-pixel',
 });
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Home', id: 'home' },
+  { name: 'About', id: 'about' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Contact', id: 'contact' },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className={`${pixelFont.className} bg-black text-white px-6 py-4 shadow-md sticky top-0 z-50`}>
+    <nav
+      className={`${pixelFont.className} bg-black text-white px-6 py-4 shadow-md fixed top-0 w-full z-50`}
+    >
       <div className="max-w-5xl mx-auto flex justify-between items-center">
         {/* Logo */}
         <Link
-          href="/"
-          className="text-cyan-400 text-sm sm:text-lg font-bold hover:text-cyan-300 transition"
+          to="home"
+          smooth={true}
+          duration={800}
+          className="text-cyan-400 text-sm sm:text-lg font-bold hover:text-cyan-300 cursor-pointer"
         >
           Wasiq.dev
         </Link>
@@ -37,70 +38,48 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-6 text-xs sm:text-sm">
           {navItems.map((item) => (
             <Link
-              key={item.name}
-              href={item.path}
-              className="relative group"
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              duration={800}
+              spy={true}
+              offset={-70} // adjust for navbar height
+              activeClass="text-green-400"
+              className="relative group cursor-pointer hover:text-pink-400 transition-colors"
             >
-              <span
-                className={`${
-                  pathname === item.path ? 'text-green-400' : 'text-white'
-                } hover:text-pink-400 transition-colors`}
-              >
-                {item.name}
-              </span>
-              <span
-                className={`absolute left-0 -bottom-1 h-0.5 w-full bg-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ${
-                  pathname === item.path ? 'scale-x-100' : ''
-                }`}
-              ></span>
+              {item.name}
+              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-green-400 transition-all group-hover:w-full"></span>
             </Link>
           ))}
         </div>
 
-        {/* Hamburger Button */}
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle Menu"
+          className="md:hidden text-cyan-400 text-lg"
         >
-          {menuOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8h16M4 16h16" />
-            </svg>
-          )}
+          ☰
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden mt-4 space-y-3 text-center"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.path}
-                className={`block py-2 text-sm ${
-                  pathname === item.path ? 'text-green-400' : 'text-white'
-                } hover:text-pink-400 transition-colors`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Nav */}
+      {menuOpen && (
+        <div className="flex flex-col items-center gap-4 mt-4 md:hidden text-sm">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              duration={800}
+              offset={-70}
+              className="cursor-pointer hover:text-pink-400"
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
