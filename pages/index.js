@@ -6,6 +6,7 @@ import MatrixBackground from '../components/MatrixBackground';
 import Navbar from '../components/Navbar';
 import TerminalIntro from '../components/Terminal/TerminalIntro';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 // Google Fonts
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
@@ -41,23 +42,41 @@ export default function Home() {
           <MatrixBackground />
           <Navbar />
           <div
-            className={`${geistSans.className} ${geistMono.className} ${pixelFont.className} relative z-10 font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 bg-black text-white`}
+            className={`${geistSans.className} ${geistMono.className} ${pixelFont.className} relative z-10 min-h-screen flex flex-col justify-center items-center text-center`}
           >
             <motion.main
-              className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-center sm:text-left"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl font-bold text-green-400">
-                Welcome to Wasiq's Portfolio
+              <h1 className="text-4xl sm:text-6xl font-bold text-green-400 tracking-wide mb-6">
+                Wasiq Mansoor
               </h1>
-              <p className="text-gray-300 text-sm max-w-xl">
-                Built entirely using Termux + GitHub + Vercel —
+              <p className="text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto mb-8">
+                Cybersecurity Enthusiast & Ethical Hacker in Training
               </p>
+
+              <div className="flex gap-6 justify-center">
+                <Link href="/projects">
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    className="px-6 py-3 rounded-lg bg-green-500 text-black font-bold shadow-lg hover:bg-green-400 transition"
+                  >
+                    View Projects
+                  </motion.a>
+                </Link>
+                <Link href="/contact">
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    className="px-6 py-3 rounded-lg border border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition"
+                  >
+                    Contact Me
+                  </motion.a>
+                </Link>
+              </div>
             </motion.main>
 
-            <footer className="row-start-3 flex gap-6 flex-wrap justify-center text-sm text-gray-500">
+            <footer className="absolute bottom-6 text-sm text-gray-500">
               <p>© {new Date().getFullYear()} Wasiq Mansoor</p>
             </footer>
           </div>
