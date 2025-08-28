@@ -26,7 +26,7 @@ const pixelFont = localFont({
 // ===== Animations =====
 const fadeRight = {
   hidden: { opacity: 0, x: 80 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 1.2 } },
 };
 
 export default function Home() {
@@ -82,6 +82,7 @@ export default function Home() {
               >
                 Cybersecurity Enthusiast & Ethical Hacker in Training
               </motion.p>
+              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
 
             {/* ===== About Section ===== */}
@@ -107,14 +108,14 @@ export default function Home() {
               >
                 <p>
                   Hey 👋 I'm <span className="text-green-400 font-bold">Wasiq</span> —
-                  a cybersecurity enthusiast and ethical hacker in training.  
+                  a cybersecurity enthusiast and ethical hacker in training.
                   Right now I am doing BSCS and will graduate by 2029.
                 </p>
                 <p>
                   This portfolio was built entirely using
                   <span className="text-blue-400"> Termux</span>,
                   <span className="text-purple-400"> GitHub</span>, and
-                  <span className="text-pink-400"> Vercel</span>, 🚀
+                  <span className="text-pink-400"> Vercel</span> 🚀,
                   showing my love for pushing boundaries.
                 </p>
                 <p>
@@ -122,6 +123,7 @@ export default function Home() {
                   penetration testing, and advanced cybersecurity research.
                 </p>
               </motion.div>
+              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
 
             {/* ===== Projects Section ===== */}
@@ -145,8 +147,9 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="text-gray-300 max-w-2xl"
               >
-                🚧 Coming soon... My hacking & programming projects will be showcased here.
+                🚧 Coming soon...
               </motion.p>
+              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
 
             {/* ===== Contact Section ===== */}
@@ -185,7 +188,7 @@ export default function Home() {
                   E-Mail
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/muhammad-wasiq-mansoor-35332927a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  href="https://www.linkedin.com/in/muhammad-wasiq-mansoor-35332927a"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-green-400"
@@ -193,6 +196,7 @@ export default function Home() {
                   LinkedIn
                 </a>
               </motion.div>
+              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
 
             {/* ===== Footer ===== */}
