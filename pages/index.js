@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import MatrixBackground from '../components/MatrixBackground';
 import TerminalIntro from '../components/Terminal/TerminalIntro';
-import DecryptText from '../components/DecryptText';
 
 // ===== Fonts =====
 const geistSans = Geist({
@@ -65,19 +64,24 @@ export default function Home() {
               id="home"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
-              <motion.div
+              <motion.h1
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                className="text-5xl sm:text-6xl font-bold text-green-400 mb-6"
               >
-                <h1 className="text-5xl sm:text-6xl font-bold text-green-400 mb-6">
-                  <DecryptText text="Wasiq Mansoor" />
-                </h1>
-                <p className="text-gray-300 text-lg sm:text-xl max-w-2xl">
-                  <DecryptText text="Cybersecurity Enthusiast & Ethical Hacker in Training" />
-                </p>
-              </motion.div>
+                Wasiq Mansoor
+              </motion.h1>
+              <motion.p
+                variants={fadeRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-gray-300 text-lg sm:text-xl max-w-2xl"
+              >
+                Cybersecurity Enthusiast & Ethical Hacker in Training
+              </motion.p>
             </section>
 
             {/* ===== About Section ===== */}
@@ -85,28 +89,36 @@ export default function Home() {
               id="about"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
+              <motion.h2
+                variants={fadeRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-4xl font-bold text-blue-400 mb-6"
+              >
+                About Me
+              </motion.h2>
               <motion.div
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="max-w-3xl space-y-6 text-gray-200 leading-relaxed"
+                className="max-w-3xl text-gray-300 space-y-6"
               >
-                <h2 className="text-4xl font-bold text-blue-400 mb-6">
-                  <DecryptText text="About Me" />
-                </h2>
                 <p>
-                  Hey 👋 I'm <span className="text-green-400 font-bold">Wasiq</span> — a cybersecurity
-                  enthusiast and ethical hacker in training. Right now I’m doing BSCS and graduating in 2029.
+                  Hey 👋 I'm <span className="text-green-400 font-bold">Wasiq</span> —
+                  a cybersecurity enthusiast and ethical hacker in training.  
+                  Right now I am doing BSCS and will graduate by 2029.
                 </p>
                 <p>
                   This portfolio was built entirely using
                   <span className="text-blue-400"> Termux</span>,
                   <span className="text-purple-400"> GitHub</span>, and
-                  <span className="text-pink-400"> Vercel</span> 🚀
+                  <span className="text-pink-400"> Vercel</span>, 🚀
+                  showing my love for pushing boundaries.
                 </p>
                 <p>
-                  My goal is to specialize in <span className="text-red-400">Red Teaming</span>,
+                  My goal is to specialize in <span className="text-red-50">Red Teaming</span>,
                   penetration testing, and advanced cybersecurity research.
                 </p>
               </motion.div>
@@ -117,17 +129,24 @@ export default function Home() {
               id="projects"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
-              <motion.div
+              <motion.h2
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                className="text-4xl font-bold text-purple-400 mb-6"
               >
-                <h2 className="text-4xl font-bold text-purple-400 mb-6">
-                  <DecryptText text="Projects" />
-                </h2>
-                <p className="text-gray-300">Coming soon... 🚧</p>
-              </motion.div>
+                Projects
+              </motion.h2>
+              <motion.p
+                variants={fadeRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-gray-300 max-w-2xl"
+              >
+                🚧 Coming soon... My hacking & programming projects will be showcased here.
+              </motion.p>
             </section>
 
             {/* ===== Contact Section ===== */}
@@ -135,30 +154,44 @@ export default function Home() {
               id="contact"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
+              <motion.h2
+                variants={fadeRight}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="text-4xl font-bold text-pink-400 mb-6"
+              >
+                Contact Me
+              </motion.h2>
               <motion.div
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
+                className="flex flex-col gap-6 text-lg"
               >
-                <h2 className="text-4xl font-bold text-pink-400 mb-6">
-                  <DecryptText text="Contact Me" />
-                </h2>
-                <div className="flex flex-col gap-6 text-lg text-gray-200">
-                  <a href="https://github.com/Wasiq2006" target="_blank" className="hover:text-green-400">
-                    GitHub
-                  </a>
-                  <a href="mailto:wasiqmansoor69@gmail.com" className="hover:text-green-400">
-                    wasiqmansoor69@gmail.com
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/wasiq-mansoor-35332927a?trk=contact-info"
-                    target="_blank"
-                    className="hover:text-green-400"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
+                <a
+                  href="https://github.com/Wasiq2006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-400"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="mailto:wasiqmansoor69@gmail.com"
+                  className="hover:text-green-400"
+                >
+                  E-Mail
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/muhammad-wasiq-mansoor-35332927a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-400"
+                >
+                  LinkedIn
+                </a>
               </motion.div>
             </section>
 
