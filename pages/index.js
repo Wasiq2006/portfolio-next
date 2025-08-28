@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 import Navbar from '../components/Navbar';
 import MatrixBackground from '../components/MatrixBackground';
@@ -65,14 +64,10 @@ export default function Home() {
               id="home"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
-              <Image
+              <img
                 src="/welcome.gif"
                 alt="Welcome Animation"
-                width={200}
-                height={200}
-                priority
-                unoptimized
-                className="mb-6 rounded-lg shadow-lg"
+                className="mb-6 w-64 h-64 object-contain rounded-lg shadow-lg"
               />
               <motion.h1
                 variants={fadeRight}
@@ -94,7 +89,7 @@ export default function Home() {
               </motion.p>
             </section>
 
-            <hr className="border-gray-700 w-3/4 mx-auto" />
+            <hr className="border-gray-700 w-3/4 mx-auto my-12" />
 
             {/* ===== About Section ===== */}
             <section
@@ -136,7 +131,7 @@ export default function Home() {
               </motion.div>
             </section>
 
-            <hr className="border-gray-700 w-3/4 mx-auto" />
+            <hr className="border-gray-700 w-3/4 mx-auto my-12" />
 
             {/* ===== Projects Section ===== */}
             <section
@@ -163,7 +158,7 @@ export default function Home() {
               </motion.p>
             </section>
 
-            <hr className="border-gray-700 w-3/4 mx-auto" />
+            <hr className="border-gray-700 w-3/4 mx-auto my-12" />
 
             {/* ===== Contact Section ===== */}
             <section
@@ -211,7 +206,7 @@ export default function Home() {
               </motion.div>
             </section>
 
-            <hr className="border-gray-700 w-3/4 mx-auto" />
+            <hr className="border-gray-700 w-3/4 mx-auto my-12" />
 
             {/* ===== Footer ===== */}
             <footer className="text-center py-6 text-sm text-gray-500">
