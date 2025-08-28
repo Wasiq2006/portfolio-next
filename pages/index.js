@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 import Navbar from '../components/Navbar';
 import MatrixBackground from '../components/MatrixBackground';
@@ -26,7 +27,7 @@ const pixelFont = localFont({
 // ===== Animations =====
 const fadeRight = {
   hidden: { opacity: 0, x: 80 },
-  visible: { opacity: 1, x: 0, transition: { duration: 1.2 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
 };
 
 export default function Home() {
@@ -64,6 +65,15 @@ export default function Home() {
               id="home"
               className="min-h-screen flex flex-col justify-center items-center text-center px-6"
             >
+              <Image
+                src="/welcome.gif"
+                alt="Welcome Animation"
+                width={200}
+                height={200}
+                priority
+                unoptimized
+                className="mb-6 rounded-lg shadow-lg"
+              />
               <motion.h1
                 variants={fadeRight}
                 initial="hidden"
@@ -82,8 +92,9 @@ export default function Home() {
               >
                 Cybersecurity Enthusiast & Ethical Hacker in Training
               </motion.p>
-              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
+
+            <hr className="border-gray-700 w-3/4 mx-auto" />
 
             {/* ===== About Section ===== */}
             <section
@@ -115,7 +126,7 @@ export default function Home() {
                   This portfolio was built entirely using
                   <span className="text-blue-400"> Termux</span>,
                   <span className="text-purple-400"> GitHub</span>, and
-                  <span className="text-pink-400"> Vercel</span> 🚀,
+                  <span className="text-pink-400"> Vercel</span>, 🚀
                   showing my love for pushing boundaries.
                 </p>
                 <p>
@@ -123,8 +134,9 @@ export default function Home() {
                   penetration testing, and advanced cybersecurity research.
                 </p>
               </motion.div>
-              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
+
+            <hr className="border-gray-700 w-3/4 mx-auto" />
 
             {/* ===== Projects Section ===== */}
             <section
@@ -149,8 +161,9 @@ export default function Home() {
               >
                 🚧 Coming soon...
               </motion.p>
-              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
+
+            <hr className="border-gray-700 w-3/4 mx-auto" />
 
             {/* ===== Contact Section ===== */}
             <section
@@ -196,8 +209,9 @@ export default function Home() {
                   LinkedIn
                 </a>
               </motion.div>
-              <hr className="border-gray-700 w-3/4 mt-12" />
             </section>
+
+            <hr className="border-gray-700 w-3/4 mx-auto" />
 
             {/* ===== Footer ===== */}
             <footer className="text-center py-6 text-sm text-gray-500">
