@@ -1,85 +1,93 @@
 'use client';
-import { Link } from 'react-scroll';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import localFont from 'next/font/local';
 
-// Pixel Font
 const pixelFont = localFont({
   src: '../fonts/PressStart2P-Regular.ttf',
   variable: '--font-pixel',
 });
 
 const navItems = [
-  { name: 'Home', id: 'home' },
-  { name: 'About', id: 'about' },
-  { name: 'Projects', id: 'projects' },
-  { name: 'Contact', id: 'contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState('home');
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]');
+
+    const onScroll = () => {
+      let current = 'home';
+      sections.forEach((section) => {
+        if (window.scrollY >= section.offsetTop - 140) {
+          current = section.id;
+        }
+      });
+      setActive(current);
+    };
+
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <nav
-      className={`${pixelFont.className} bg-black text-white px-6 py-4 shadow-md fixed top-0 w-full z-50`}
+    <motion.nav
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`${pixelFont.className}
+        fixed top-4 left-1/2 -translate-x-1/2 z-50
+        w-[95%] max-w-6xl
+        rounded-full px-10 py-4
+
+        /* REAL GLASS */
+        bg-gradient-to-br from-white/10 via-white/5 to-white/0
+        backdrop-blur-xl
+        border border-white/20
+        shadow-[0_0_40px_rgba(0,255,150,0.15)]
+      `}
     >
-      <div className="max-w-5xl mx-auto flex justify-between items-center">
+      <div className="flex items-center justify-between text-xs tracking-widest text-white">
         {/* Logo */}
-        <Link
-          to="home"
-          smooth={true}
-          duration={800}
-          className="text-cyan-400 text-sm sm:text-lg font-bold hover:text-cyan-300 cursor-pointer"
+        <a
+          href="#home"
+          className="font-bold text-green-400 hover:text-green-300 transition"
         >
-          Wasiq.dev
-        </Link>
+          WASIQ
+        </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex space-x-6 text-xs sm:text-sm">
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={item.id}
-              smooth={true}
-              duration={800}
-              spy={true}
-              offset={-70} // adjust for navbar height
-              activeClass="text-green-400"
-              className="relative group cursor-pointer hover:text-pink-400 transition-colors"
-            >
-              {item.name}
-              <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-green-400 transition-all group-hover:w-full"></span>
-            </Link>
-          ))}
+        {/* Links */}
+        <div className="flex gap-8">
+          {navItems.map((item) => {
+            const isActive = active === item.href.replace('#', '');
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`relative group transition-colors
+                  ${isActive ? 'text-green-400' : 'text-gray-300 hover:text-green-300'}
+                `}
+              >
+                {item.name}
+
+                {/* underline */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-[2px]
+                    bg-green-400 transition-all duration-300
+                    ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}
+                  `}
+                />
+              </a>
+            );
+          })}
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-cyan-400 text-lg"
-        >
-          ☰
-        </button>
       </div>
-
-      {/* Mobile Nav */}
-      {menuOpen && (
-        <div className="flex flex-col items-center gap-4 mt-4 md:hidden text-sm">
-          {navItems.map((item) => (
-            <Link
-              key={item.id}
-              to={item.id}
-              smooth={true}
-              duration={800}
-              offset={-70}
-              className="cursor-pointer hover:text-pink-400"
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-      )}
-    </nav>
+    </motion.nav>
   );
 }
