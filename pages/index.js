@@ -164,7 +164,7 @@ export default function Home() {
             variants={fadeRight}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.3 }}
             className="max-w-md w-full space-y-6 p-8 text-center text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
           >
           <h2 className="text-4xl font-bold text-pink-400 mb-4">
