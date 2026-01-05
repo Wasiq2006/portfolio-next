@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import { motion } from 'framer-motion';
-
+import ScrollProgress from '../components/ScrollProgress';
 import Navbar from '../components/Navbar';
 import MatrixBackground from '../components/MatrixBackground';
 import TerminalIntro from '../components/Terminal/TerminalIntro';
@@ -54,6 +54,7 @@ export default function Home() {
       ) : (
         <>
           <MatrixBackground />
+          <ScrollProgress />
           <Navbar />
 
           <div
@@ -68,7 +69,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.3 }}
                 className="text-5xl sm:text-6xl font-bold text-green-400 mb-6"
               >
                 Wasiq Mansoor
@@ -77,7 +78,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="text-gray-300 text-lg sm:text-xl max-w-2xl"
               >
                 Cybersecurity Enthusiast & Ethical Hacker in Training
@@ -95,7 +96,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="text-4xl font-bold text-blue-400 mb-6"
               >
                 About Me
@@ -104,7 +105,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="max-w-3xl text-gray-300 space-y-6"
               >
                 <p>
@@ -137,7 +138,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="text-4xl font-bold text-purple-400 mb-6"
               >
                 Projects
@@ -146,7 +147,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="text-gray-300 max-w-2xl"
               >
                 🚧 Coming soon...
@@ -164,7 +165,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="text-4xl font-bold text-pink-400 mb-6"
               >
                 Contact Me
@@ -173,7 +174,7 @@ export default function Home() {
                 variants={fadeRight}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                 viewport={{ once: false, amount: 0.3 }}
                 className="flex flex-col gap-6 text-lg"
               >
                 <a
