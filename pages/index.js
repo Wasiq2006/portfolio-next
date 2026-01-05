@@ -155,55 +155,46 @@ export default function Home() {
             </section>
 
             <hr className="border-gray-700 my-12" />
-
             {/* ===== Contact Section ===== */}
-            <section
+             <section
               id="contact"
-              className="min-h-screen flex flex-col justify-center items-center text-center px-6"
-            >
-              <motion.h2
-                variants={fadeRight}
-                initial="hidden"
-                whileInView="visible"
-                 viewport={{ once: false, amount: 0.3 }}
-                className="text-4xl font-bold text-pink-400 mb-6"
-              >
-                Contact Me
-              </motion.h2>
-              <motion.div
-                variants={fadeRight}
-                initial="hidden"
-                whileInView="visible"
-                 viewport={{ once: false, amount: 0.3 }}
-                className="max-w-3xl space-y-6 p-8 text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
-              >
-                <a
-                  href="https://github.com/Wasiq2006"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-green-400"
-                >
-                  GitHub
-                </a>
-                <a
-                  href="mailto:wasiqmansoor69@gmail.com"
-                  className="hover:text-green-400"
-                >
-                  E-Mail
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/muhammad-wasiq-mansoor-35332927a"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-green-400"
-                >
-                  LinkedIn
-                </a>
-              </motion.div>
-            </section>
-
-            <hr className="border-gray-700 my-12" />
-
+              className="min-h-screen flex items-center justify-center px-6"
+          >
+            <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-md w-full space-y-6 p-8 text-center text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
+          >
+          <h2 className="text-4xl font-bold text-pink-400 mb-4">
+          Contact Me
+          </h2>
+        <a
+          href="https://github.com/Wasiq2006"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block hover:text-green-400 transition"
+        >
+          GitHub
+        </a>
+        <a
+          href="mailto:wasiqmansoor69@gmail.com"
+          className="block hover:text-green-400 transition"
+        >
+          E-Mail
+          </a>
+        <a
+        href="https://www.linkedin.com/in/muhammad-wasiq-mansoor-35332927a"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block hover:text-green-400 transition"
+      >
+        LinkedIn
+      </a>
+      </motion.div>
+      </section>
+      <hr className="border-gray-700 my-12" />
             {/* ===== Footer ===== */}
             <footer className="text-center py-6 text-sm text-gray-500">
               © {new Date().getFullYear()} Wasiq Mansoor
