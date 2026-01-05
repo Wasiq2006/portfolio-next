@@ -97,7 +97,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                  viewport={{ once: false, amount: 0.3 }}
-                className="text-4xl font-bold text-blue-400 mb-6"
+                className="max-w-3xl text-gray-300 space-y-6"
               >
                 About Me
               </motion.h2>
@@ -106,7 +106,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                  viewport={{ once: false, amount: 0.3 }}
-                className="max-w-3xl text-gray-300 space-y-6"
+                className="max-w-3xl space-y-6 p-8 text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
               >
                 <p>
                   Hey 👋 I'm <span className="text-green-400 font-bold">Wasiq</span> —
@@ -148,7 +148,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                  viewport={{ once: false, amount: 0.3 }}
-                className="text-gray-300 max-w-2xl"
+                className="max-w-3xl space-y-6 p-8 text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
               >
                 🚧 Coming soon...
               </motion.p>
@@ -175,7 +175,7 @@ export default function Home() {
                 initial="hidden"
                 whileInView="visible"
                  viewport={{ once: false, amount: 0.3 }}
-                className="flex flex-col gap-6 text-lg"
+                className="max-w-3xl space-y-6 p-8 text-gray-200 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_30px_rgba(0,255,150,0.15)]"
               >
                 <a
                   href="https://github.com/Wasiq2006"
