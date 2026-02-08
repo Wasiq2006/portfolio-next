@@ -2,22 +2,28 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import localFont from 'next/font/local';
+import { Oxanium } from 'next/font/google';
 
-const pixelFont = localFont({
-  src: '../fonts/PressStart2P-Regular.ttf',
-  variable: '--font-pixel',
-});
+const oxanium = Oxanium({ subsets: ['latin'], weight: ['200', '400', '700', '800'] });
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Certifications', href: '#certifications' },
   { name: 'Contact', href: '#contact' },
+];
+
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com', color: 'green' },
+  { name: 'LinkedIn', href: 'https://linkedin.com', color: 'cyan' },
 ];
 
 export default function Navbar() {
   const [active, setActive] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
@@ -30,6 +36,7 @@ export default function Navbar() {
         }
       });
       setActive(current);
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', onScroll);
@@ -37,57 +44,179 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`${pixelFont.className}
-        fixed top-4 left-1/2 -translate-x-1/2 z-50
-        w-[95%] max-w-6xl
-        rounded-full px-10 py-4
+    <>
+      <motion.nav
+        initial={{ y: -60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`${oxanium.className}
+          fixed top-4 left-1/2 -translate-x-1/2 z-50
+          w-[95%] max-w-6xl
+          rounded-full px-6 sm:px-12 py-4 sm:py-5
+          transition-all duration-300
+          ${scrolled 
+            ? 'bg-black/60 backdrop-blur-2xl border-white/30 shadow-[0_0_50px_rgba(0,255,100,0.2)]' 
+            : 'bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl border-white/20 shadow-[0_0_40px_rgba(0,255,150,0.15)]'
+          }
+        `}
+      >
+        <div className="flex items-center justify-between">
+          {/* Logo with Terminal Icon */}
+          <a
+            href="#home"
+            className="flex items-center gap-2 font-black text-lg sm:text-xl text-green-400 hover:text-green-300 transition uppercase tracking-wider group"
+          >
+            <span className="text-xl group-hover:animate-pulse">⌘</span>
+            WASIQ
+          </a>
 
-        /* REAL GLASS */
-        bg-gradient-to-br from-white/10 via-white/5 to-white/0
-        backdrop-blur-xl
-        border border-white/20
-        shadow-[0_0_40px_rgba(0,255,150,0.15)]
-      `}
-    >
-      <div className="flex items-center justify-between text-xs tracking-widest text-white">
-        {/* Logo */}
-        <a
-          href="#home"
-          className="font-bold text-green-400 hover:text-green-300 transition"
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-6 sm:gap-8 items-center">
+            {navItems.map((item) => {
+              const isActive = active === item.href.replace('#', '');
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={`relative group transition-all duration-300 font-bold text-xs sm:text-sm uppercase tracking-wide
+                    ${isActive 
+                      ? 'text-green-400' 
+                      : 'text-gray-300 hover:text-green-300'
+                    }
+                  `}
+                >
+                  {/* Pill Background */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activePill"
+                      className="absolute inset-0 rounded-full bg-green-400/20 border border-green-400/40 -z-10"
+                      transition={{ type: 'spring', damping: 20, stiffness: 150 }}
+                    />
+                  )}
+                  
+                  <span className="relative px-3 py-2 block">
+                    {item.name}
+                    {isActive && (
+                      <motion.span
+                        className="absolute inset-0 rounded-full bg-green-400/10 blur-lg -z-20"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Social & CTA Icons */}
+          <div className="hidden md:flex gap-3 items-center">
+            {socialLinks.map((social) => (
+              <motion.a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-3 py-2 rounded-lg font-semibold text-xs uppercase tracking-wide transition-all
+                  ${social.color === 'green'
+                    ? 'bg-green-400/25 hover:bg-green-400/35 border border-green-400/60 hover:border-green-400/80 text-green-200 hover:text-green-100'
+                    : 'bg-cyan-400/25 hover:bg-cyan-400/35 border border-cyan-400/60 hover:border-cyan-400/80 text-cyan-200 hover:text-cyan-100'
+                  }
+                `}
+              >
+                {social.name}
+              </motion.a>
+            ))}
+            
+            {/* Resume Button */}
+            <motion.a
+              href="/WasiqResume.pdf"
+              download="Muhammad-Wasiq-Resume.pdf"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-green-400 to-cyan-400 
+                text-black font-bold text-xs uppercase tracking-wide
+                hover:shadow-[0_0_20px_rgba(0,255,100,0.4)] transition-all"
+            >
+              Resume
+            </motion.a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex flex-col gap-1.5 group"
+            aria-label="Toggle mobile menu"
+          >
+            <span className={`w-6 h-0.5 bg-green-400 transition-all duration-300 ${mobileOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`w-6 h-0.5 bg-green-400 transition-all duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+            <span className={`w-6 h-0.5 bg-green-400 transition-all duration-300 ${mobileOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className={`${oxanium.className} fixed top-20 left-4 right-4 z-40 md:hidden
+            rounded-2xl bg-black/80 backdrop-blur-xl border border-green-400/30
+            p-6 space-y-4`}
         >
-          WASIQ
-        </a>
-
-        {/* Links */}
-        <div className="flex gap-8">
-          {navItems.map((item) => {
+          {navItems.map((item, idx) => {
             const isActive = active === item.href.replace('#', '');
             return (
-              <a
+              <motion.a
                 key={item.name}
                 href={item.href}
-                className={`relative group transition-colors
-                  ${isActive ? 'text-green-400' : 'text-gray-300 hover:text-green-300'}
+                onClick={() => setMobileOpen(false)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                className={`block px-4 py-3 rounded-lg transition-all font-bold uppercase text-sm tracking-wide
+                  ${isActive
+                    ? 'bg-green-400/20 border border-green-400/40 text-green-400'
+                    : 'text-gray-300 hover:text-green-400 hover:bg-white/5'
+                  }
                 `}
               >
                 {item.name}
-
-                {/* underline */}
-                <span
-                  className={`absolute left-0 -bottom-1 h-[2px]
-                    bg-green-400 transition-all duration-300
-                    ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}
-                  `}
-                />
-              </a>
+              </motion.a>
             );
           })}
-        </div>
-      </div>
-    </motion.nav>
+
+          <div className="pt-4 border-t border-white/10 flex gap-3">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 px-3 py-2 rounded-lg bg-white/5 hover:bg-cyan-400/20 text-cyan-400 
+                  hover:text-cyan-300 transition text-center font-bold text-xs uppercase"
+              >
+                {social.name}
+              </a>
+            ))}
+          </div>
+
+          <motion.a
+            href="/WasiqResume.pdf"
+            download="Muhammad-Wasiq-Resume.pdf"
+            onClick={() => setMobileOpen(false)}
+            whileTap={{ scale: 0.95 }}
+            className="block w-full px-4 py-3 rounded-lg bg-gradient-to-r from-green-400 to-cyan-400 
+              text-black font-bold text-xs uppercase tracking-wide text-center
+              hover:shadow-[0_0_20px_rgba(0,255,100,0.4)] transition-all"
+          >
+            Resume
+          </motion.a>
+        </motion.div>
+      )}
+    </>
   );
 }
