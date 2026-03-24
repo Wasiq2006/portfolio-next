@@ -1,0 +1,22 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield Background -->
+  <path d="M96 12C96 12 144 36 144 84C144 132 96 180 96 180C96 180 48 132 48 84C48 36 96 12 96 12Z" fill="#1a1a1a" stroke="#00ff88" stroke-width="2.5"/>
+  
+  <!-- Shield Inner Border -->
+  <path d="M96 20C96 20 138 42 138 84C138 128 96 172 96 172C96 172 54 128 54 84C54 42 96 20 96 20Z" fill="none" stroke="#00ff88" stroke-width="1.5" opacity="0.6"/>
+  
+  <!-- Lock Body -->
+  <rect x="78" y="95" width="28" height="32" rx="3" fill="none" stroke="#00ff88" stroke-width="2"/>
+  
+  <!-- Lock Shackle (top part) -->
+  <path d="M82 95C82 75 110 75 110 95" fill="none" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Lock Keyhole -->
+  <circle cx="96" cy="111" r="2.5" fill="#00ff88"/>
+  
+  <!-- Decorative Corner Elements (tech aesthetic) -->
+  <circle cx="52" cy="65" r="2" fill="#00ff88" opacity="0.8"/>
+  <circle cx="140" cy="65" r="2" fill="#00ff88" opacity="0.8"/>
+  <circle cx="65" cy="155" r="2" fill="#00ff88" opacity="0.8"/>
+  <circle cx="127" cy="155" r="2" fill="#00ff88" opacity="0.8"/>
+</svg>

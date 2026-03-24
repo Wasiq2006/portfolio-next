@@ -1,41 +1,91 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Dependencies
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
 
-# env files (can opt-in for committing if needed)
-.env*
+# Build & Runtime
+dist/
+dist-ssr/
+build/
+.next/
+.vercel/
+out/
 
-# vercel
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development.local
+.env.test.local
+
+# Caches & Temporary Files
+.cache/
+.turbo/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+.parcel-cache
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.vscode-test
+.vscode/.react/
+
+# IDE & Editor Files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+*~
+*.iml
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Testing & Coverage
+coverage/
+*.lcov
+.nyc_output/
+.jest-cache/
+test-results/
+
+# Local development
+.env.local
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Miscellaneous
+*.local
+.tern-port
+.vite/
