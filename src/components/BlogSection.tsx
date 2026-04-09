@@ -30,19 +30,21 @@ const BlogSection = () => {
             posts.map((post) => (
               <article
                 key={post.id}
-                className="group relative border-4 border-black bg-white p-6 flex flex-col transition-all duration-300 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 rounded-none"
-                onMouseEnter={playHover}
+                className="group relative border-4 border-foreground bg-card p-6 flex flex-col transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 rounded-none"
+                style={{ boxShadow: '8px 8px 0px 0px transparent' }}
+                onMouseEnter={() => { playHover(); } }                
+                onMouseLeave={()=>{}}
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <Calendar className="w-3 h-3 text-black/50" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-black/50">
+                  <Calendar className="w-3 h-3 text-foreground/50" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-foreground/50">
                     {new Date(post.publishedAt).toLocaleDateString(undefined, {
                       year: 'numeric',
                       month: 'short',
                       day: 'numeric',
                     })}
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-black/50 ml-auto">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-foreground/50 ml-auto">
                     {post.readTime}
                   </span>
                 </div>
@@ -51,7 +53,7 @@ const BlogSection = () => {
                   {post.title}
                 </h3>
 
-                <p className="text-sm font-light text-black/70 mb-6 line-clamp-3 leading-relaxed">
+                <p className="text-sm font-light text-foreground/70 mb-6 line-clamp-3 leading-relaxed">
                   {post.brief}
                 </p>
 
@@ -61,7 +63,10 @@ const BlogSection = () => {
                       playClick();
                       navigate(`/blog/${post.id}`);
                     }}
-                    className="inline-flex items-center justify-center w-full py-3 border-2 border-black bg-white text-black text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:bg-black hover:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none translate-y-0 active:translate-y-[2px] rounded-none"
+                    className="inline-flex items-center justify-center w-full py-3 border-2 border-foreground bg-background text-foreground text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:bg-foreground hover:text-background hover:shadow-none translate-y-0 active:translate-y-[2px] rounded-none"
+                    style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '4px 4px 0px 0px currentColor'; }}
                   >
                     Read Full Blog
                   </button>
@@ -69,7 +74,7 @@ const BlogSection = () => {
               </article>
             ))
           ) : (
-            <div className="col-span-full py-12 text-center border-2 border-black border-dashed opacity-50">
+            <div className="col-span-full py-12 text-center border-2 border-foreground border-dashed opacity-50">
               <p className="font-mono text-sm uppercase tracking-widest">
                 No blog posts found. Check back soon!
               </p>

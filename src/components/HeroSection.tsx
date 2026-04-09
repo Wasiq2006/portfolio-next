@@ -31,7 +31,25 @@ const HeroSection = () => {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [theme, setTheme] = useState('light');
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Listen for theme changes
+  useEffect(() => {
+    const checkTheme = () => {
+      const hasIndigoClass = document.documentElement.classList.contains('midnight-indigo');
+      setTheme(hasIndigoClass ? 'midnight-indigo' : 'light');
+    };
+
+    checkTheme();
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Blinking cursor
   useEffect(() => {
@@ -76,6 +94,43 @@ const HeroSection = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Helper function to get CSS variable and convert HSL to RGB
+    const getCSSColorAsRGB = (varName: string): string => {
+      const root = document.documentElement;
+      const hslValue = getComputedStyle(root).getPropertyValue(varName).trim();
+      
+      if (!hslValue) return 'rgb(0, 0, 0)';
+
+      // Parse HSL value (e.g., "0 0% 5%")
+      const parts = hslValue.split(' ');
+      const h = parseFloat(parts[0]);
+      const s = parseFloat(parts[1]) / 100;
+      const l = parseFloat(parts[2]) / 100;
+
+      // HSL to RGB conversion
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m = l - c / 2;
+      
+      let r = 0, g = 0, b = 0;
+      if (h < 60) { r = c; g = x; b = 0; }
+      else if (h < 120) { r = x; g = c; b = 0; }
+      else if (h < 180) { r = 0; g = c; b = x; }
+      else if (h < 240) { r = 0; g = x; b = c; }
+      else if (h < 300) { r = x; g = 0; b = c; }
+      else { r = c; g = 0; b = x; }
+
+      r = Math.round((r + m) * 255);
+      g = Math.round((g + m) * 255);
+      b = Math.round((b + m) * 255);
+      
+      return `rgb(${r}, ${g}, ${b})`;
+    };
+
+    // Get theme-aware background and foreground colors
+    const backgroundColor = getCSSColorAsRGB('--background');
+    const foregroundColor = getCSSColorAsRGB('--foreground');
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -98,21 +153,36 @@ const HeroSection = () => {
       if (timestamp - lastFrameTime < frameInterval) return;
       lastFrameTime = timestamp;
 
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+      // Use theme-aware background fade
+      const bgColor = backgroundColor.match(/\d+/g);
+      if (bgColor) {
+        ctx.fillStyle = `rgba(${bgColor[0]}, ${bgColor[1]}, ${bgColor[2]}, 0.04)`;
+      } else {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.04)'; // fallback
+      }
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
 
-        // Lead character — brighter
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+        // Lead character — brighter (using foreground color)
+        const fgColor = foregroundColor.match(/\d+/g);
+        if (fgColor) {
+          ctx.fillStyle = `rgba(${fgColor[0]}, ${fgColor[1]}, ${fgColor[2]}, 0.15)`;
+        } else {
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'; // fallback
+        }
         ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
         // Trail character — slightly dimmer
         if (drops[i] > 1) {
           const trailChar = chars[Math.floor(Math.random() * chars.length)];
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
+          if (fgColor) {
+            ctx.fillStyle = `rgba(${fgColor[0]}, ${fgColor[1]}, ${fgColor[2]}, 0.07)`;
+          } else {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.07)'; // fallback
+          }
           ctx.fillText(trailChar, i * fontSize, (drops[i] - 1) * fontSize);
         }
 
@@ -128,10 +198,10 @@ const HeroSection = () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [theme]);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative px-6 overflow-hidden pb-12">
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-6 overflow-hidden pb-12 bg-background">
       {/* Matrix rain canvas */}
       <canvas
         ref={canvasRef}
@@ -232,7 +302,10 @@ const HeroSection = () => {
                   rel="noopener noreferrer"
                   aria-label={link.label}
                   onClick={playClick}
-                  className="group relative inline-flex items-center justify-center p-3 border-2 border-black bg-white text-black transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-black hover:text-white rounded-none"
+                  className="group relative inline-flex items-center justify-center p-3 border-2 border-foreground bg-card text-foreground transition-all duration-300 hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] hover:bg-foreground hover:text-background rounded-none"
+                  style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '4px 4px 0px 0px currentColor'; }}
                 >
                   <Icon className="w-5 h-5" />
                 </a>
@@ -248,7 +321,10 @@ const HeroSection = () => {
               href="/resume.pdf"
               download="Muhammad_Wasiq_Resume.pdf"
               onClick={playClick}
-              className="group relative inline-flex items-center gap-2 px-8 py-4 border-2 border-black bg-black text-white text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] hover:bg-white hover:text-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-none"
+              className="group relative inline-flex items-center gap-2 px-8 py-4 border-2 border-foreground bg-foreground text-background text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:bg-card hover:text-foreground rounded-none"
+              style={{ boxShadow: '8px 8px 0px 0px rgba(var(--foreground-rgb, 0 0 0), 0.2)' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '8px 8px 0px 0px currentColor'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '8px 8px 0px 0px rgba(var(--foreground-rgb, 0 0 0), 0.2)'; }}
             >
               <span>Download Resume</span>
               <span className="w-2 h-2 border-r-2 border-b-2 border-current rotate-45 -translate-y-[1px] group-hover:translate-y-[1px] transition-transform duration-300"></span>

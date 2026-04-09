@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { playClick, playHover } from '@/hooks/useSoundEffects';
 import SoundToggle from './SoundToggle';
+import ThemeToggle from './ThemeToggle';
 
 const links = [
   { label: 'About', href: '#about' },
@@ -43,12 +44,14 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Desktop Sound Toggle (Absolute Right) */}
-        <div className="hidden lg:block absolute right-6">
+        {/* Desktop Toggles (Absolute Right) */}
+        <div className="hidden lg:flex items-center gap-4 absolute right-6">
+          <ThemeToggle />
+          <span className="text-foreground/20 text-xs">|</span>
           <SoundToggle />
         </div>
 
-        {/* Mobile Header (Toggle Left, Sound Right) */}
+        {/* Mobile Header (Toggle Left, Toggles Right) */}
         <div className="lg:hidden flex justify-between w-full items-center">
           <button
             onClick={() => {
@@ -63,7 +66,8 @@ const Navbar = () => {
           >
             {open ? 'Close' : 'Menu'}
           </button>
-          <div className="scale-75">
+          <div className="flex gap-2 scale-75 origin-right">
+            <ThemeToggle />
             <SoundToggle />
           </div>
         </div>

@@ -56,8 +56,8 @@ const ContactSection = () => {
           </p>
 
           <div className="space-y-6">
-            <div className="group flex items-center gap-4 p-4 border border-foreground/10 bg-white/50 hover:border-black transition-colors duration-300 rounded-none">
-              <div className="p-3 bg-black text-white self-start rounded-none">
+            <div className="group flex items-center gap-4 p-4 border border-foreground/10 bg-card hover:border-foreground transition-colors duration-300 rounded-none">
+              <div className="p-3 bg-foreground text-background self-start rounded-none">
                 <Mail className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
@@ -68,7 +68,7 @@ const ContactSection = () => {
               </div>
               <button
                 onClick={copyEmail}
-                className="p-2 hover:bg-black/5 rounded-none transition-colors relative"
+                className="p-2 hover:bg-foreground/10 rounded-none transition-colors relative"
                 title="Copy email"
                 aria-label={copied ? 'Email copied' : 'Copy email address'}
               >
@@ -80,8 +80,8 @@ const ContactSection = () => {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 p-4 border border-foreground/10 bg-white/50 hover:border-black transition-colors duration-300 rounded-none">
-              <div className="p-3 bg-black text-white self-start rounded-none">
+            <div className="flex items-center gap-4 p-4 border border-foreground/10 bg-card hover:border-foreground transition-colors duration-300 rounded-none">
+              <div className="p-3 bg-foreground text-background self-start rounded-none">
                 <LucideGlobe2 className="w-5 h-5" />
               </div>
               <div>
@@ -109,7 +109,7 @@ const ContactSection = () => {
                     rel="noopener noreferrer"
                     onClick={playClick}
                     aria-label={link.label}
-                    className="p-3 border border-foreground/20 hover:bg-black hover:text-white transition-all duration-300 hover:-translate-y-1 active:scale-95 touch-manipulation rounded-none"
+                    className="p-3 border border-foreground/20 hover:bg-foreground hover:text-background transition-all duration-300 hover:-translate-y-1 active:scale-95 touch-manipulation rounded-none"
                   >
                     <Icon className="w-5 h-5" />
                   </a>
@@ -129,11 +129,11 @@ const ContactSection = () => {
               placeholder=" "
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-black transition-colors rounded-none"
+              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-foreground transition-colors rounded-none"
             />
             <label
               htmlFor="contact-name"
-              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-black peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-black peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
+              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-foreground peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-foreground peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
             >
               Your Name
             </label>
@@ -147,11 +147,11 @@ const ContactSection = () => {
               placeholder=" "
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-black transition-colors rounded-none"
+              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-foreground transition-colors rounded-none"
             />
             <label
               htmlFor="contact-email"
-              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-black peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-black peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
+              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-foreground peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-foreground peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
             >
               Email Address
             </label>
@@ -165,11 +165,11 @@ const ContactSection = () => {
               placeholder=" "
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-black transition-colors resize-none rounded-none"
+              className="peer w-full bg-transparent border-2 border-foreground/10 px-4 py-4 text-foreground focus:outline-none focus:border-foreground transition-colors resize-none rounded-none"
             />
             <label
               htmlFor="contact-message"
-              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-black peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-black peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
+              className="absolute left-4 top-4 text-foreground/40 text-sm uppercase tracking-widest transition-all duration-300 pointer-events-none peer-focus:-translate-y-7 peer-focus:text-xs peer-focus:text-foreground peer-focus:bg-background peer-focus:px-2 peer-[:not(:placeholder-shown)]:-translate-y-7 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-foreground peer-[:not(:placeholder-shown)]:bg-background peer-[:not(:placeholder-shown)]:px-2"
             >
               Message
             </label>
@@ -178,11 +178,14 @@ const ContactSection = () => {
           <button
             type="submit"
             onClick={playClick}
-            className="w-full group relative flex items-center justify-center gap-3 px-8 py-4 bg-black text-white font-mono uppercase tracking-widest overflow-hidden transition-all duration-300 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.2)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.5)] hover:-translate-y-1 active:scale-95 active:shadow-none touch-manipulation rounded-none"
+            className="w-full group relative flex items-center justify-center gap-3 px-8 py-4 bg-foreground text-background font-mono uppercase tracking-widest overflow-hidden transition-all duration-300 hover:-translate-y-1 active:scale-95 active:shadow-none touch-manipulation rounded-none"
+            style={{ boxShadow: '8px 8px 0px 0px rgba(var(--foreground-rgb, 0 0 0), 0.2)' }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '8px 8px 0px 0px rgba(var(--foreground-rgb, 0 0 0), 0.5)'; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '8px 8px 0px 0px rgba(var(--foreground-rgb, 0 0 0), 0.2)'; }}
           >
             <span className="relative z-10 font-bold">Send Email</span>
             <Send className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            <div className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
           </button>
         </form>
       </div>

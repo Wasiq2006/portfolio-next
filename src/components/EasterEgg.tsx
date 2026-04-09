@@ -66,9 +66,9 @@ const EasterEgg = () => {
       </div>
 
       {/* Decorative floating bits */}
-      <div className="absolute top-20 left-20 w-32 h-32 border-8 border-black animate-bounce" />
+      <div className="absolute top-20 left-20 w-32 h-32 border-8 border-foreground animate-bounce" />
       <div
-        className="absolute bottom-20 right-20 w-32 h-32 border-8 border-black animate-bounce"
+        className="absolute bottom-20 right-20 w-32 h-32 border-8 border-foreground animate-bounce"
         style={{ animationDelay: '0.2s' }}
       />
     </div>

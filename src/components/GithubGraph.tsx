@@ -3,8 +3,8 @@ import { GitHubCalendar } from 'react-github-calendar';
 
 const GithubGraph = () => {
   return (
-    <div className="border-4 border-black p-4 bg-white text-black hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-      <h3 className="font-mono text-xl font-bold mb-4 border-b-2 border-black pb-2 uppercase tracking-tighter">
+    <div className="border-4 border-foreground p-4 bg-card text-foreground hover:shadow-[8px_8px_0px_0px_currentColor] transition-all duration-300">
+      <h3 className="font-mono text-xl font-bold mb-4 border-b-2 border-foreground pb-2 uppercase tracking-tighter">
         GitHub Activity_
       </h3>
       <div className="flex justify-center overflow-x-auto pb-2">

@@ -63,11 +63,11 @@ const CustomCursor = () => {
     >
       {/* Outer Square */}
       <div
-        className={`absolute -translate-x-1/2 -translate-y-1/2 border-2 border-black bg-white transition-all duration-200 ease-out rounded-none ${
-          isHovering ? 'w-10 h-10 rotate-45 bg-black' : 'w-6 h-6 rotate-0'
+        className={`absolute -translate-x-1/2 -translate-y-1/2 border-2 border-foreground bg-background transition-all duration-200 ease-out rounded-none ${
+          isHovering ? 'w-10 h-10 rotate-45 bg-foreground' : 'w-6 h-6 rotate-0'
         } ${isClicking ? 'scale-75' : 'scale-100'}`}
         style={{
-          boxShadow: isHovering ? 'none' : '4px 4px 0px 0px rgba(0,0,0,1)',
+          boxShadow: isHovering ? 'none' : '4px 4px 0px 0px currentColor',
         }}
       />
 
@@ -77,7 +77,7 @@ const CustomCursor = () => {
           isHovering ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="w-1 h-1 bg-black rounded-none" />
+        <div className="w-1 h-1 bg-foreground rounded-none" />
       </div>
 
       {/* Hover "Plus" sign inside when hovering */}
@@ -86,8 +86,8 @@ const CustomCursor = () => {
           isHovering ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
         }`}
       >
-        <div className="w-4 h-[2px] bg-white absolute -translate-x-1/2 -translate-y-1/2" />
-        <div className="h-4 w-[2px] bg-white absolute -translate-x-1/2 -translate-y-1/2" />
+        <div className="w-4 h-[2px] bg-foreground absolute -translate-x-1/2 -translate-y-1/2" />
+        <div className="h-4 w-[2px] bg-foreground absolute -translate-x-1/2 -translate-y-1/2" />
       </div>
     </div>
   );

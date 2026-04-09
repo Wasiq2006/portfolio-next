@@ -27,10 +27,10 @@ const LoadingPage = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-white flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-background flex items-center justify-center overflow-hidden">
       {/* Background animation */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 animate-pulse bg-black" />
+        <div className="absolute inset-0 animate-pulse bg-foreground" />
       </div>
 
       <div className="relative z-10 text-center">
@@ -39,7 +39,7 @@ const LoadingPage = () => {
           <div className="relative w-32 h-32">
             {/* Outer rotating border */}
             <div 
-              className="absolute inset-0 border-4 border-black"
+              className="absolute inset-0 border-4 border-foreground"
               style={{
                 animation: 'spin 3s linear infinite'
               }}
@@ -47,7 +47,7 @@ const LoadingPage = () => {
             
             {/* Inner rotating border (opposite direction) */}
             <div 
-              className="absolute inset-2 border-4 border-transparent border-t-black border-r-black"
+              className="absolute inset-2 border-4 border-transparent border-t-foreground border-r-foreground"
               style={{
                 animation: 'spin 2s linear infinite reverse'
               }}
@@ -55,7 +55,7 @@ const LoadingPage = () => {
 
             {/* Center dot */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-3 h-3 bg-black rounded-none animate-pulse" />
+              <div className="w-3 h-3 bg-foreground rounded-none animate-pulse" />
             </div>
           </div>
         </div>
@@ -68,16 +68,16 @@ const LoadingPage = () => {
           
           {/* Animated dots */}
           <div className="flex justify-center gap-2">
-            <div className="w-2 h-2 bg-black rounded-none animate-bounce" style={{animationDelay: '0s'}} />
-            <div className="w-2 h-2 bg-black rounded-none animate-bounce" style={{animationDelay: '0.2s'}} />
-            <div className="w-2 h-2 bg-black rounded-none animate-bounce" style={{animationDelay: '0.4s'}} />
+            <div className="w-2 h-2 bg-foreground rounded-none animate-bounce" style={{animationDelay: '0s'}} />
+            <div className="w-2 h-2 bg-foreground rounded-none animate-bounce" style={{animationDelay: '0.2s'}} />
+            <div className="w-2 h-2 bg-foreground rounded-none animate-bounce" style={{animationDelay: '0.4s'}} />
           </div>
         </div>
 
         {/* Progress bar */}
-        <div className="w-64 md:w-80 border-2 border-black bg-white overflow-hidden">
+        <div className="w-64 md:w-80 border-2 border-foreground bg-card overflow-hidden">
           <div 
-            className="h-1 bg-black"
+            className="h-1 bg-foreground"
             style={{
               animation: 'progress 3.5s ease-in-out forwards'
             }}

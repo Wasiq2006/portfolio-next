@@ -39,14 +39,15 @@ const BlogDetail = () => {
 
   if (!blog) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-background">
         <CustomCursor />
         <div className="text-center">
           <h1 className="text-4xl font-black mb-4">404 - Blog Not Found</h1>
           <p className="text-lg mb-6">Sorry, we couldn't find the blog you're looking for.</p>
           <button
             onClick={handleBackToBlog}
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-black bg-white text-black text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-black hover:text-white rounded-none"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-foreground bg-card text-foreground text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-foreground hover:text-background rounded-none"
+            style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Blog
@@ -72,7 +73,8 @@ const BlogDetail = () => {
           elements.push(
             <pre
               key={`code-${idx}`}
-              className="bg-black text-green-400 p-6 rounded-none border-4 border-black my-8 overflow-x-auto font-mono text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+              className="bg-black text-green-400 p-6 rounded-none border-4 border-foreground my-8 overflow-x-auto font-mono text-sm"
+              style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
             >
               <code>{codeContent}</code>
             </pre>
@@ -88,13 +90,13 @@ const BlogDetail = () => {
         codeContent += line + '\n';
       } else if (line.startsWith('# ')) {
         elements.push(
-          <h1 key={idx} className="text-4xl md:text-5xl font-black mt-16 mb-6 border-b-4 border-black pb-4">
+          <h1 key={idx} className="text-4xl md:text-5xl font-black mt-16 mb-6 border-b-4 border-foreground pb-4">
             {line.replace('# ', '')}
           </h1>
         );
       } else if (line.startsWith('## ')) {
         elements.push(
-          <h2 key={idx} className="text-3xl font-black mt-12 mb-4 border-b-2 border-black pb-3">
+          <h2 key={idx} className="text-3xl font-black mt-12 mb-4 border-b-2 border-foreground pb-3">
             {line.replace('## ', '')}
           </h2>
         );
@@ -112,10 +114,10 @@ const BlogDetail = () => {
           elements.push(
             <ul
               key={`list-${idx}`}
-              className="list-disc list-inside mb-6 space-y-3 bg-gray-50 border-l-4 border-black p-6 rounded-none"
+              className="list-disc list-inside mb-6 space-y-3 bg-card border-l-4 border-foreground p-6 rounded-none"
             >
               {listItems.map((item, i) => (
-                <li key={i} className="text-black/80 font-medium">
+                <li key={i} className="text-foreground/80 font-medium">
                   {item.replace('* ', '')}
                 </li>
               ))}
@@ -125,11 +127,11 @@ const BlogDetail = () => {
         }
       } else if (line.startsWith('---')) {
         elements.push(
-          <div key={idx} className="my-10 border-t-4 border-black" />
+          <div key={idx} className="my-10 border-t-4 border-foreground" />
         );
       } else if (line.trim()) {
         elements.push(
-          <p key={idx} className="text-black/80 mb-6 leading-relaxed text-lg">
+          <p key={idx} className="text-foreground/80 mb-6 leading-relaxed text-lg">
             {line}
           </p>
         );
@@ -145,15 +147,15 @@ const BlogDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <CustomCursor />
       
       {/* Hero Section */}
-      <div className="border-b-4 border-black bg-white">
+      <div className="border-b-4 border-foreground bg-background">
         <div className="max-w-4xl mx-auto px-4 md:px-6 py-16 md:py-24">
           <button
             onClick={handleBackToBlog}
-            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-b-2 border-black pb-1 hover:gap-4 transition-all mb-8 hover:translate-x-1"
+            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-b-2 border-foreground pb-1 hover:gap-4 transition-all mb-8 hover:translate-x-1"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Blog
@@ -163,7 +165,7 @@ const BlogDetail = () => {
             {blog.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm border-t-2 border-black pt-6">
+          <div className="flex flex-wrap items-center gap-6 text-sm border-t-2 border-foreground pt-6">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
               <span className="font-medium">
@@ -174,7 +176,7 @@ const BlogDetail = () => {
                 })}
               </span>
             </div>
-            <span className="font-mono font-bold uppercase tracking-widest bg-black text-white px-3 py-1">
+              <span className="font-mono font-bold uppercase tracking-widest bg-foreground text-background px-3 py-1">
               {blog.readTime}
             </span>
           </div>
@@ -188,10 +190,11 @@ const BlogDetail = () => {
         </div>
 
         {/* Back Button */}
-        <div className="mt-20 pt-8 border-t-4 border-black flex justify-center md:justify-start">
+        <div className="mt-20 pt-8 border-t-4 border-foreground flex justify-center md:justify-start">
           <button
             onClick={handleBackToBlog}
-            className="inline-flex items-center gap-2 px-8 py-4 border-3 border-black bg-white text-black text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-black hover:text-white rounded-none"
+            className="inline-flex items-center gap-2 px-8 py-4 border-3 border-foreground bg-card text-foreground text-xs font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-none hover:translate-x-1 hover:translate-y-1 hover:bg-foreground hover:text-background rounded-none"
+            style={{ boxShadow: '6px 6px 0px 0px currentColor' }}
           >
             <ArrowLeft className="w-5 h-5" />
             Back to All Blogs

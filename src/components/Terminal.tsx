@@ -491,7 +491,10 @@ const Terminal = () => {
             playTerminalOpen();
             setIsOpen(true);
           }}
-          className="p-3 bg-white border border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-black hover:text-white transition-all duration-300 active:scale-95 rounded-none"
+          className="p-3 bg-card border border-foreground hover:bg-foreground hover:text-background transition-all duration-300 active:scale-95 rounded-none"
+          style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
+          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '4px 4px 0px 0px currentColor'; }}
           aria-label="Open Terminal"
         >
           <TerminalIcon className="w-5 h-5" />

@@ -45,6 +45,46 @@
     --sidebar-border: 0 0% 85%;
     --sidebar-ring: 0 0% 50%;
   }
+
+  /* Midnight Indigo Theme */
+  html.midnight-indigo {
+    --background: 225 22% 17%;
+    --foreground: 35 73% 94%;
+
+    --card: 225 22% 20%;
+    --card-foreground: 35 73% 94%;
+
+    --popover: 225 22% 20%;
+    --popover-foreground: 35 73% 94%;
+
+    --primary: 225 22% 17%;
+    --primary-foreground: 35 73% 94%;
+
+    --secondary: 225 22% 25%;
+    --secondary-foreground: 35 73% 94%;
+
+    --muted: 225 22% 30%;
+    --muted-foreground: 35 73% 70%;
+
+    --accent: 35 60% 50%;
+    --accent-foreground: 225 22% 17%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 225 22% 17%;
+
+    --border: 225 22% 30%;
+    --input: 225 22% 25%;
+    --ring: 35 73% 94%;
+
+    --sidebar-background: 225 22% 18%;
+    --sidebar-foreground: 35 73% 94%;
+    --sidebar-primary: 225 22% 17%;
+    --sidebar-primary-foreground: 35 73% 94%;
+    --sidebar-accent: 35 60% 50%;
+    --sidebar-accent-foreground: 225 22% 17%;
+    --sidebar-border: 225 22% 25%;
+    --sidebar-ring: 35 73% 94%;
+  }
 }
 
 @layer base {
@@ -98,6 +138,59 @@
 
   .nav-link {
     @apply uppercase text-xs tracking-[0.2em] text-foreground hover:text-foreground/70 font-medium transition-colors duration-300;
+  }
+
+  /* Theme-aware hardcoded colors */
+  :is(body, .light-theme) {
+    --theme-white: #f5f5f0;
+    --theme-black: #0a0a0a;
+    --theme-border-color: #000000;
+  }
+
+  :is(html.midnight-indigo) {
+    --theme-white: hsl(var(--card));
+    --theme-black: hsl(var(--foreground));
+    --theme-border-color: hsl(225 22% 35%);
+  }
+
+  /* Override hardcoded color utilities */
+  .bg-white {
+    @apply !bg-card transition-colors duration-300;
+  }
+
+  .text-black {
+    @apply !text-foreground transition-colors duration-300;
+  }
+
+  .text-white {
+    @apply transition-colors duration-300;
+  }
+
+  .bg-black {
+    @apply !bg-primary transition-colors duration-300;
+  }
+
+  .border-black {
+    @apply !border-foreground/50 transition-colors duration-300;
+  }
+
+  /* Special case for borders that should be more prominent */
+  .border-4.border-black,
+  .border-3.border-black,
+  .border-2.border-black,
+  .border.border-black {
+    @apply !border-foreground transition-colors duration-300;
+  }
+
+  /* Text colors within dark backgrounds */
+  .bg-black .text-white,
+  .bg-primary .text-white {
+    @apply !text-primary-foreground;
+  }
+
+  /* Icon fill colors */
+  .fill-black {
+    @apply !fill-foreground transition-colors duration-300;
   }
 
   .fade-in {
@@ -276,4 +369,72 @@
   * {
     -webkit-tap-highlight-color: transparent;
   }
+}
+
+/* ========== EXPLICIT THEME-AWARE COLOR OVERRIDES ========== */
+/* These rules are outside @layer to ensure they apply correctly */
+
+/* Background colors */
+.bg-white {
+  background-color: hsl(var(--card)) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Foreground/Text colors */
+.text-black {
+  color: hsl(var(--foreground)) !important;
+  transition: color 0.3s ease;
+}
+
+/* Primary background */
+.bg-black {
+  background-color: hsl(var(--primary)) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Text on primary backgrounds */
+.bg-black .text-white,
+.bg-primary .text-white {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+/* Border colors */
+.border-black {
+  border-color: hsl(var(--foreground)) !important;
+  transition: border-color 0.3s ease;
+}
+
+/* More specific border rules */
+.border-4.border-black,
+.border-3.border-black,
+.border-2.border-black,
+.border.border-black {
+  border-color: hsl(var(--foreground)) !important;
+}
+
+/* SVG fills */
+.fill-black {
+  fill: hsl(var(--foreground)) !important;
+  transition: fill 0.3s ease;
+}
+
+/* Button and interactive states */
+button.bg-white,
+a.bg-white,
+[role="button"].bg-white {
+  background-color: hsl(var(--card)) !important;
+}
+
+button.bg-white:hover,
+a.bg-white:hover,
+[role="button"].bg-white:hover {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+button.bg-black:hover,
+a.bg-black:hover,
+[role="button"].bg-black:hover {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--foreground)) !important;
 }

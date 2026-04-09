@@ -2,7 +2,7 @@
 
 **Cybersecurity Specialist & DevOps Engineer**
 
-[**Live Demo**](https://wasiq.vercel.app/)
+[**Live Demo**](https://wasiq.tech/)
 
 ---
 
@@ -12,10 +12,10 @@
 
 ```bash
 # Clone the project
-git clone https://github.com/Wasiq2006/Vara-s--Portfolio.git
+git clone https://github.com/Wasiq2006/portfolio-next.git
 
 # Navigate to the directory
-cd Vara-s--Portfolio
+cd portfolio-next
 
 # Install dependencies
 npm install
@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-The portfolio will be available at **http://localhost:5173**
+The portfolio will be available at **http://localhost:**
 
 ### **Build for Production**
 

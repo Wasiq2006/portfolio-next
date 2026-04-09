@@ -49,11 +49,13 @@ const ProjectsSection = () => {
       {projects.map((project) => (
         <div
           key={project.title}
-          onMouseEnter={playHover}
-          className="group relative border-4 border-black p-8 flex flex-col justify-between hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 bg-white min-w-[300px] w-full md:w-auto snap-start rounded-none"
+          className="group relative border-4 border-foreground p-8 flex flex-col justify-between hover:-translate-x-1 hover:-translate-y-1 transition-all duration-300 bg-card min-w-[300px] w-full md:w-auto snap-start rounded-none\"
+          style={{ boxShadow: '10px 10px 0px 0px transparent' }}
+          onMouseEnter={(e) => { playHover(); (e.currentTarget as HTMLElement).style.boxShadow = '10px 10px 0px 0px currentColor'; }}
+          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = '10px 10px 0px 0px transparent'; }}
         >
           {'isNew' in project && project.isNew && (
-            <div className="absolute -top-3 -right-3 bg-black text-white px-3 py-1 text-[10px] font-black uppercase tracking-tighter border-4 border-black z-10 rotate-12 group-hover:rotate-6 transition-transform rounded-none">
+            <div className="absolute -top-3 -right-3 bg-foreground text-background px-3 py-1 text-[10px] font-black uppercase tracking-tighter border-4 border-foreground z-10 rotate-12 group-hover:rotate-6 transition-transform rounded-none">
               LATEST WORK
             </div>
           )}
@@ -69,7 +71,7 @@ const ProjectsSection = () => {
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="font-mono text-[10px] font-bold border border-black/10 px-1.5 py-0"
+                  className="font-mono text-[10px] font-bold border border-foreground/10 px-1.5 py-0"
                 >
                   {tag}
                 </Badge>
@@ -77,14 +79,15 @@ const ProjectsSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-black/10">
+          <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-foreground/10">
             {project.title !== 'Android Based Home Server' && (
               <a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playClick}
-                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-black bg-white text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-black hover:text-white rounded-none"
+                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-foreground bg-card text-[10px] font-black uppercase tracking-wider transition-all duration-300 hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-foreground hover:text-background rounded-none"
+                style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
               >
                 <Github className="w-3.5 h-3.5" />
                 Source
@@ -96,7 +99,8 @@ const ProjectsSection = () => {
                   playClick();
                   navigate('/blog/android-home-server');
                 }}
-                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-black bg-white text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-black hover:text-white rounded-none w-full"
+                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-foreground bg-card text-[10px] font-black uppercase tracking-wider transition-all duration-300 hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-foreground hover:text-background rounded-none w-full"
+                style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 Read Blog
@@ -107,7 +111,8 @@ const ProjectsSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={playClick}
-                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-black bg-white text-[10px] font-black uppercase tracking-wider transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-black hover:text-white rounded-none"
+                className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-foreground bg-card text-[10px] font-black uppercase tracking-wider transition-all duration-300 hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-foreground hover:text-background rounded-none"
+                style={{ boxShadow: '4px 4px 0px 0px currentColor' }}
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 Live Demo
@@ -124,7 +129,7 @@ const ProjectsSection = () => {
         target="_blank"
         rel="noopener noreferrer"
         onClick={playClick}
-        className="group flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] border-b-2 border-black pb-1 hover:gap-4 transition-all"
+        className="group flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] border-b-2 border-foreground pb-1 hover:gap-4 transition-all"
       >
         <Github className="w-4 h-4" />
         View All Projects

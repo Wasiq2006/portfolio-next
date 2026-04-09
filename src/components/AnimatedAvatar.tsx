@@ -6,10 +6,10 @@ const AnimatedAvatar = () => {
   return (
     <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto md:mx-0 shrink-0 group">
       {/* Brutalist offset shadow */}
-      <div className="absolute inset-0 border-2 border-black translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-300" />
+      <div className="absolute inset-0 border-2 border-foreground translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform duration-300" />
 
       {/* Main frame */}
-      <div className="relative w-full h-full border-2 border-black bg-white overflow-hidden group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
+      <div className="relative w-full h-full border-2 border-foreground bg-card overflow-hidden group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
         <div className="w-full h-full animate-[float_6s_ease-in-out_infinite]">
           <img
             src="/images/avatar.png.png"
@@ -32,7 +32,7 @@ const AnimatedAvatar = () => {
       </div>
 
       {/* Status badge */}
-      <div className="absolute -bottom-3 -right-3 bg-black text-white px-3 py-1 text-[10px] font-mono uppercase tracking-widest border border-black z-10">
+      <div className="absolute -bottom-3 -right-3 bg-foreground text-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest border border-foreground z-10">
         <span className="inline-block w-1.5 h-1.5 bg-green-400 rounded-none mr-1.5 animate-pulse" />
         Available
       </div>
