@@ -1,4 +1,5 @@
 import SectionBlock from './SectionBlock';
+import { playHover } from '@/hooks/useSoundEffects';
 
 const education = [
   {
@@ -14,7 +15,8 @@ const EducationSection = () => (
       {education.map((item) => (
         <div
           key={item.degree}
-          className="border-l-2 border-foreground/10 pl-6 py-2 hover:border-foreground transition-colors duration-300\"
+          className="border-l-2 border-foreground/10 pl-6 py-2 hover:border-foreground transition-colors duration-300"
+          onMouseEnter={playHover}
         >
           <h3 className="text-base md:text-lg font-bold text-foreground">
             {item.degree}

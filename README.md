@@ -1,6 +1,6 @@
 # 🚀 Muhammad Wasiq's Portfolio
 
-**Cybersecurity Specialist & DevOps Engineer**
+**Cybersecurity Engineer And Cloud Security Engineer**
 
 [**Live Demo**](https://wasiq.tech/)
 

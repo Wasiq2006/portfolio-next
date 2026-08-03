@@ -13,8 +13,8 @@ import { PROFILE, SOCIAL_LINKS } from '@/data/constants';
 
 const roles = [
   'Security Researcher',
-  'DevOps Engineer',
-  'Cybersecurity Specialist',
+  'Cloud Security Engineer',
+  'Cybersecurity Engineer',
   'Linux System Administrator',
 ];
 
@@ -272,12 +272,9 @@ const HeroSection = () => {
         {/* Tech tags */}
         <div className="flex flex-wrap gap-2 justify-center mt-8 max-w-md mx-auto">
           {[
-            'Python',
             'Cybersecurity',
-            'DevOps',
-            'Docker',
+            'Cloud Security',
             'Linux',
-            'Kubernetes',
           ].map((tech) => (
             <span
               key={tech}

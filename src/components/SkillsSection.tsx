@@ -26,7 +26,7 @@ const skillCategories = [
     ],
   },
   {
-    title: 'DevOps & Containerization',
+    title: 'Cloud Security & Containerization',
     icon: <Zap className="w-5 h-5" />,
     color: 'bg-orange-50',
     skills: [
@@ -73,6 +73,8 @@ const skillCategories = [
     color: 'bg-blue-50',
     skills: [
       'Python',
+      'Lua',
+      'Powershell',
       'C++',
       'Bash/Shell',
       'SQL',

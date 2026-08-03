@@ -17,7 +17,7 @@ const Finale = () => {
 
   const marqueeTags = [
     `${PROFILE.shortName} 🚀`,
-    'Cybersecurity Specialist | DevOps Engineer | Linux Admin',
+    'Cybersecurity Engineer And Cloud Security Engineer | Linux Admin',
     'Building secure infrastructure & threat prevention systems 🔒',
     'Securing systems, automating workflows, solving critical vulnerabilities',
   ];

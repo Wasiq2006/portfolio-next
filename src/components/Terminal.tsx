@@ -133,7 +133,7 @@ const Terminal = () => {
         case 'cat education.txt':
           return 'Currently pursuing BSCS at SZABIST, specializing in Cybersecurity and DevOps.';
         case 'cat roadmap.sh':
-          return 'Next up: Master Kubernetes orchestration, build secure CI/CD pipelines, deepen pentesting skills, contribute to open-source security projects.';
+          return 'Next up: Mastering Cloud Security, build secure CI/CD pipelines, deepen pentesting skills, contribute to open-source security projects.';
         case 'about':
           return `I'm ${PROFILE.name}, a CS student passionate about cybersecurity and DevOps. I explore system security and infrastructure automation through hands-on projects.`;
         case 'skills':
@@ -141,7 +141,7 @@ const Terminal = () => {
             <div>
               <p className="mb-1 text-yellow-400">CORE SPECIALIZATIONS:</p>
               <p>• Cybersecurity & Network Security</p>
-              <p>• DevOps & Containerization</p>
+              <p>• Cloud Security & Containerization</p>
               <p>• Linux & System Administration</p>
               <p>• Cryptography & Encryption</p>
               <p>• Penetration Testing & Threat Analysis</p>
@@ -153,16 +153,10 @@ const Terminal = () => {
             <div className="flex flex-col gap-1">
               <p className="mb-1 text-purple-400">RECENT WORK:</p>
               <a href="#projects" className="text-blue-400 hover:underline">
-                1. Network Security Scanner (LATEST)
+                1. Andriod Based Home Server
               </a>
               <a href="#projects" className="text-blue-400 hover:underline">
-                2. Kubernetes Security & Deployment
-              </a>
-              <a href="#projects" className="text-blue-400 hover:underline">
-                3. Docker Security Infrastructure
-              </a>
-              <a href="#projects" className="text-blue-400 hover:underline">
-                4. Cryptography Toolkit
+                2. Zabcal
               </a>
             </div>
           );
